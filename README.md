@@ -4,21 +4,15 @@ Personal config files, version-controlled so a new machine can be set up in one 
 
 ## Contents
 
-| File | Links to | Summary |
+| Application | Files | Summary |
 |---|---|---|
-| `zshrc` | `~/.zshrc` | Tab completion, zsh-autosuggestions, zoxide (`z <dir>`), zsh-syntax-highlighting |
-| `zprofile` | `~/.zprofile` | Loads Homebrew's shell environment |
-| `profile` | `~/.profile` | Loads the Rust/Cargo environment |
-| `tcshrc` | `~/.tcshrc` | Loads the Rust/Cargo environment (tcsh variant) |
-| `gitconfig` | `~/.gitconfig` | Git identity, SSH commit signing, `trunk` as default branch, `wt` alias for `worktree` |
-| `claude/settings.json` | `~/.claude/settings.json` | Claude Code permissions, hooks, statusline, enabled plugins, model/effort settings, theme |
-| `ghostty/config` | `~/.config/ghostty/config` | Terminal theme (Solarized Osaka Night), font (Fira Code SemiBold), font size |
-| `git/ignore` | `~/.config/git/ignore` | Global gitignore |
-| `gh/config.yml` | `~/.config/gh/config.yml` | GitHub CLI preferences (`co: pr checkout` alias, protocol, prompts) |
-| `herdr/config.toml` | `~/.config/herdr/config.toml` | Herdr workspace multiplexer preferences |
-| `zed/settings.json` | `~/.config/zed/settings.json` | Zed editor settings (formatters, agent models, theme, font) |
-| `zed/keymap.json` | `~/.config/zed/keymap.json` | Zed custom key bindings |
-| `zed/tasks.json` | `~/.config/zed/tasks.json` | Zed project tasks (Television-integrated file finder) |
+| Shell | `zshrc`, `zprofile`, `profile`, `tcshrc` | zsh completion, autosuggestions, zoxide, syntax-highlighting; Homebrew and Cargo environment setup |
+| Git | `gitconfig`, `git/ignore` | Identity, SSH commit signing, `trunk` as default branch, `wt` alias, global gitignore |
+| GitHub CLI | `gh/config.yml` | `co: pr checkout` alias, protocol, prompts |
+| Claude Code | `claude/settings.json`, `claude/themes/catppuccin-macchiato.json` | Permissions, hooks, statusline, enabled plugins, model/effort settings, custom theme |
+| Ghostty | `ghostty/config` | Terminal theme (Solarized Osaka Night), font (Fira Code SemiBold), font size |
+| Herdr | `herdr/config.toml` | Workspace multiplexer preferences |
+| Zed | `zed/settings.json`, `zed/keymap.json`, `zed/tasks.json` | Formatters, agent models, theme, font, custom keybindings, Television-integrated file finder task |
 
 ## Install
 

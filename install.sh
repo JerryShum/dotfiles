@@ -26,3 +26,4 @@ link tcshrc .tcshrc
 link gitconfig .gitconfig
 link claude/settings.json .claude/settings.json
 link claude/themes/catppuccin-macchiato.json .claude/themes/catppuccin-macchiato.json
+link ghostty/config .config/ghostty/config

@@ -1,0 +1,21 @@
+{
+  "name": "Catppuccin Macchiato",
+  "base": "dark",
+  "overrides": {
+    "claude": "#8aadf4",
+    "text": "#cad3f5",
+    "inverseText": "#24273a",
+    "inactive": "#a5adcb",
+    "subtle": "#5b6078",
+    "success": "#a6da95",
+    "error": "#ed8796",
+    "warning": "#eed49f",
+    "promptBorder": "#8aadf4",
+    "diffAdded": "#343f34",
+    "diffRemoved": "#462d3b",
+    "diffAddedWord": "#4f6341",
+    "diffRemovedWord": "#723f50",
+    "diffAddedDimmed": "#272d2d",
+    "diffRemovedDimmed": "#302430"
+  }
+}

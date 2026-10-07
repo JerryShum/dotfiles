@@ -13,6 +13,12 @@ Personal config files, version-controlled so a new machine can be set up in one 
 | `gitconfig` | `~/.gitconfig` | Git identity, SSH commit signing, `trunk` as default branch, `wt` alias for `worktree` |
 | `claude/settings.json` | `~/.claude/settings.json` | Claude Code permissions, hooks, statusline, enabled plugins, model/effort settings, theme |
 | `ghostty/config` | `~/.config/ghostty/config` | Terminal theme (Solarized Osaka Night), font (Fira Code SemiBold), font size |
+| `git/ignore` | `~/.config/git/ignore` | Global gitignore |
+| `gh/config.yml` | `~/.config/gh/config.yml` | GitHub CLI preferences (`co: pr checkout` alias, protocol, prompts) |
+| `herdr/config.toml` | `~/.config/herdr/config.toml` | Herdr workspace multiplexer preferences |
+| `zed/settings.json` | `~/.config/zed/settings.json` | Zed editor settings (formatters, agent models, theme, font) |
+| `zed/keymap.json` | `~/.config/zed/keymap.json` | Zed custom key bindings |
+| `zed/tasks.json` | `~/.config/zed/tasks.json` | Zed project tasks (Television-integrated file finder) |
 
 ## Install
 

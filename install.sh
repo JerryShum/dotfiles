@@ -27,3 +27,9 @@ link gitconfig .gitconfig
 link claude/settings.json .claude/settings.json
 link claude/themes/catppuccin-macchiato.json .claude/themes/catppuccin-macchiato.json
 link ghostty/config .config/ghostty/config
+link git/ignore .config/git/ignore
+link gh/config.yml .config/gh/config.yml
+link herdr/config.toml .config/herdr/config.toml
+link zed/settings.json .config/zed/settings.json
+link zed/keymap.json .config/zed/keymap.json
+link zed/tasks.json .config/zed/tasks.json

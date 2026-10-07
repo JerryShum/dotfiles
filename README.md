@@ -12,8 +12,6 @@ Personal config files, version-controlled so a new machine can be set up in one 
 | `tcshrc` | `~/.tcshrc` | Loads the Rust/Cargo environment (tcsh variant) |
 | `gitconfig` | `~/.gitconfig` | Git identity, SSH commit signing, `trunk` as default branch, `wt` alias for `worktree` |
 | `claude/settings.json` | `~/.claude/settings.json` | Claude Code permissions, hooks, statusline, enabled plugins, model/effort settings, theme |
-| `claude/themes/catppuccin-macchiato.json` | `~/.claude/themes/catppuccin-macchiato.json` | Catppuccin Macchiato theme, diff colors retuned for a darker terminal background |
-
 ## Install
 
 ```sh

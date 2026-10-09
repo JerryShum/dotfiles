@@ -4,7 +4,7 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
-**Precedence:** when a plugin or skill (ponytail, i-have-adhd, ported pstack skills) conflicts with this file, this file wins.
+**Precedence:** when a plugin or skill (ponytail, i-have-adhd, agent-skills, the pstack skills) conflicts with this file, this file wins.
 
 ## 0. Modes
 
@@ -16,6 +16,10 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 - "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
 - "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
+- **Workflow:** the agent-skills plugin sets the process: `/spec` → `/plan` → `/build` → `/test` → `/review` → `/ship`, and its skills load when a task matches. When the ask is unclear, use `interview-me` before writing a spec.
+- **Commits:** agent-skills commits after each slice. Here, finish the slice, show the proposed commit message, and commit when the user OKs the step.
+- **`/build auto`:** typing it is the user's explicit waiver of the §5 step gate for that plan only. Its own pauses on failures and risky steps still apply, and nothing is pushed.
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
@@ -29,7 +33,7 @@ Before implementing:
 
 ## 2. Simplicity First
 
-**Solution size: the ponytail plugin's ladder governs it.** Its "every place your change must reach" list is the step map, worked through in §5-sized steps. pstack's principles, playbooks, and TypeScript rules decide process and proof, not size: their structure-adding rules (branded types, new unions, state machines) apply only where the loose version forces a cast, a `!`, or a "should never happen" throw.
+**Solution size: the ponytail plugin's ladder governs it.** Its "every place your change must reach" list is the step map, worked through in §5-sized steps. agent-skills and the TypeScript rules decide process and proof, not size: structure-adding rules (branded types, new unions, state machines, new abstractions) apply only where the loose version forces a cast, a `!`, or a "should never happen" throw.
 
 ## 3. Surgical Changes
 

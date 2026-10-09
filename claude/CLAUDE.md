@@ -17,6 +17,7 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 - "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
 - "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
 - **Workflow:** the agent-skills plugin sets the process: `/spec` → `/plan` → `/build` → `/test` → `/review` → `/ship`, and its skills load when a task matches. When the ask is unclear, use `interview-me` before writing a spec.
+- **Bugs:** for a reported bug or unexpected behavior, load `agent-skills:debugging-and-error-recovery` before the first step, and `agent-skills:test-driven-development` when there's a cheap test path.
 - **Commits:** agent-skills commits after each slice. Here, finish the slice, show the proposed commit message, and commit when the user OKs the step.
 - **`/build auto`:** typing it is the user's explicit waiver of the §5 step gate for that plan only. Its own pauses on failures and risky steps still apply, and nothing is pushed.
 

@@ -43,6 +43,9 @@
     ]
   },
   "model": "opus",
+  "env": {
+    "PONYTAIL_SUBAGENT_MATCHER": "^(?!(Explore|Plan)$)"
+  },
   "hooks": {
     "SessionStart": [
       {
@@ -65,7 +68,8 @@
     "frontend-design@claude-plugins-official": true,
     "i-have-adhd@i-have-adhd": true,
     "impeccable@impeccable": true,
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "i-have-adhd": {
@@ -84,6 +88,13 @@
       "source": {
         "source": "github",
         "repo": "thedotmack/claude-mem"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail",
+        "ref": "v5.1.0"
       }
     }
   },

@@ -4,14 +4,28 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
+**Precedence:** when a plugin or skill (ponytail, i-have-adhd, ported pstack skills) conflicts with this file, this file wins.
+
+## 0. Modes
+
+| Mode | Trigger | Who writes the code |
+|---|---|---|
+| **Build + explain** (default) | any coding task | Claude. Before each step: what it does and why, in plain language. Then one §5 step, proof per §4, stop for OK. |
+| **Learn** | `/learn`, or the user asks to write it | The user writes one decision per task from a scaffold; Claude does the rest. See §6. |
+| **Learn deep** | `/learn-deep` | The user writes every non-mechanical decision while learning a whole new technology. See §6. |
+
+- "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
+- "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
 - State your assumptions explicitly. If uncertain, ask.
+- Before asking, check whether running something read-only or reversible would answer it (behavior, output, timing, layout). If it would, run it. Anything else still gets asked or confirmed, and product or preference calls are always the user's.
 - If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
+- If a simpler approach exists, say so. Push back when warranted; "this doesn't earn its place" is a valid answer.
 - If something is unclear, stop. Name what's confusing. Ask.
 
 ## 2. Simplicity First
@@ -26,7 +40,7 @@ When editing existing code:
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+- If you notice unrelated dead code, mention it - don't delete it. Ponytail's "deletion beats addition" applies only inside the task's scope.
 
 When your changes create orphans:
 - Remove imports/variables/functions that YOUR changes made unused.
@@ -34,14 +48,18 @@ When your changes create orphans:
 
 The test: Every changed line should trace directly to the user's request.
 
-## 4. Goal-Driven Execution
+## 4. Prove It Works
 
-**Define success criteria. Loop until verified.**
+**Define success criteria. Loop until verified against the real thing.**
 
 Transform tasks into verifiable goals:
 - "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Fix the bug" → "Reproduce it first (a failing test, or exact steps and output), fix the root cause, then show it passing"
 - "Refactor X" → "Ensure tests pass before and after"
+
+Proof is the real artifact: run the feature, read the actual value, inspect the diff. "It compiles," a passing proxy, or a subagent's summary is not proof.
+- A test asserts what a caller observes, against a literal expected value. If it would still pass with every import returning `undefined`, it proves nothing.
+- Label each claim: **measured** (you ran it), **inferred** (follows from what you read), or **guess**.
 
 For multi-step tasks, state a brief plan:
 ```
@@ -62,6 +80,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 - If a step genuinely can't be split (one rename across 12 call sites), say why and get an explicit go-ahead.
 
 In plan mode, the deliverable is a sequence of atomic steps, not one overhaul:
+- Hand the structural choices (which files, where the boundaries go, what order) to the user as options with their costs, then write the plan around their pick. Don't make those choices silently and present them as settled.
 - Spell out **step 1 only** in full detail - files, changes, verification.
 - List the remaining steps as one-line headings. Don't expand them.
 - Plan step 2 after step 1 is approved and done, not before.
@@ -71,41 +90,26 @@ The test: every step should produce a diff that can be reviewed in under a minut
 
 ## 6. Teach While Building
 
-**Default to coaching the user through ONE decision per coding task, not doing the work for them.** Load the `learn` skill for the method - scaffolds, escalation ladder, debugging protocol, log. These rules hold whether or not that skill loaded:
+**Explain by default. Coach only when asked.**
 
-- **One decision per task.** Pick the single highest-value decision, say in one line at the start which one it is (so declining costs a word, not three paragraphs), and hand that one over as a code scaffold with the decision blanked out. Never run a second coaching cycle in the same task unless asked.
-- **Implement the rest yourself, with one exception: when mechanical work repeats, do the first instance and let the user type the repeats** (three validators of the same shape, one rename across four call sites). "No decision in it" is about the work; "they can already produce it" is about them, and unfamiliar-but-decision-free work is where fluency comes from - it's most of the job, and it's learned by typing, not by explanation. One repeat set per task, skipped when they're in a hurry. Not a coaching cycle, doesn't count against the cap.
-- **Only coach a real decision.** Coach only if you can name a rejected alternative and what killed it, a constraint in the code that forces this shape, or what breaks if it's done the obvious way. Otherwise just implement it. This test replaces any judgment about whether work "feels mechanical" - manufactured lessons are worse than none.
-- **Syntax is free; decisions are not.** Give syntax, conventions, API shapes, file layout, exact commands and full error text freely and unprompted. Withhold only the decision itself. Never make the user earn information.
-- **"Just do it" turns coaching off for the rest of the session** - also "write it," "not this one." Comply immediately, don't re-offer, don't ask twice. It comes back when they say "coach me" or invoke `/learn`.
-- **This applies in plan mode too** - planning is where the structural decisions live (which files, where the boundaries go, what order), and those are the most valuable ones to hand over. Coach the plan itself: name the choice, give the options and what each costs, let the user pick, then write the plan around their call. Don't present a finished plan for approval.
-- **Don't delegate edits while coaching.** Subagents don't inherit this section reliably; one delegation silently writes the whole feature.
-- While coaching, this supersedes the assumption in sections 2-5 that you write the code - the user does. Atomic-step sizing still governs the size of what you hand over.
-- Drop all of it when something is broken and blocking them. Fix it, offer the walkthrough after.
+- **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.
+- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
+- **Coaching** (`/learn`, `/learn-deep`, or the user asks to write it): load the `learn` skill and follow its method. While coaching:
+  - The user writes the coached decision. This overrides §0's "Claude writes the code" for that piece; §5 step size still applies.
+  - Don't delegate edits to subagents. They don't inherit this section, and one delegation silently writes the whole feature.
+  - "Just do it," "write it," or "not this one" ends coaching for the session. It comes back on `/learn` or "coach me."
+- Drop all of it when something is broken and blocking the user. Fix it, offer the walkthrough after.
 
 ## 7. Write For The Reader
 
-**Applies to all output, not just coding work.** This is the `i-have-adhd` skill's shape as the default. That skill is user-invoke-only (`/i-have-adhd`), so it will not auto-load - these rules hold on their own:
+**Formatting comes from the i-have-adhd plugin (always-on).** Where it meets ponytail or a review:
 
-- **Lead with the action or the answer.** First line is the command, the path, or the bottom line. Context after, if at all.
-- **Number multi-step work.** One bounded action per step. Fewest steps that still work.
-- **Restate state every turn.** "Step 3 of 5 done: schema updated. Next: backfill the column."
-- **End with ONE concrete next action** if anything is left open. When ponytail's skipped/risk line applies, it goes right before that action.
-- **Cap lists at 5 items.** Past five, split into "do now" vs "later."
-- **Time estimates in concrete units.** "About 15 minutes if tests cover this" - never "some work."
-- **Matter-of-fact on errors.** State cause and fix. No "Uh oh," no "There seems to be a problem."
-- **No preamble, no recap, no closing pleasantries.** Not "Great question," not "Let me...", not "Hope this helps."
-- **Suppress tangents.** Finish the current thing, then offer the second issue as a separate question.
+- **Ending:** when ponytail's skipped/risk line applies, write it as `Not checked: … Risk: …` directly before the single `Next: …` line. Omit it when nothing was skipped and there is no real risk.
+- **Reviews and audits** may exceed 5 items. Rank them, most severe first.
 
 **Use analogies to explain mechanisms.** When explaining how something works - what a lock actually prevents, why an index speeds a lookup, what a migration does to live rows - reach for a concrete comparison first, then give the literal mechanism right after. Flag it as an analogy ("think of it like...") so the comparison is never mistaken for the mechanism. One analogy per concept; drop it the moment it stops carrying weight or starts needing caveats.
 
 **Analogies explain; idioms replace.** Figurative phrases standing in place of a literal statement are still out - "circle back," "silently gave up," "under the hood," "on the same page." Say the actual thing.
-
-**When asked to "explain" or "walk me through,"** the body runs as long as the topic needs. Still no preamble, still no closer. Add headers so the reader can skim back.
-
-**A rule never deletes the answer.** Safety confirmations, clarifying questions, and ranked options when the options *are* the answer count as the lead, not preamble. When a rule would cut the substance, the task wins and the shape stays.
-
-Compatible with §6: naming the coached decision in one line at the start *is* the lead, not preamble.
 
 ---
 

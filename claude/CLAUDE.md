@@ -16,6 +16,7 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 - "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
 - "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
+- **Playbooks:** for a bug fix, feature, refactor, prototype, or an investigation that needs exploring, read `~/.claude/skills/playbook/SKILL.md` and the matching playbook it points to before the first step, then list that playbook's steps at the top of the reply.
 
 ## 1. Think Before Coding
 

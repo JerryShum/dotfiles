@@ -25,6 +25,7 @@ link profile .profile
 link tcshrc .tcshrc
 link gitconfig .gitconfig
 link claude/settings.json .claude/settings.json
+link claude/CLAUDE.md .claude/CLAUDE.md
 link claude/themes/catppuccin-macchiato.json .claude/themes/catppuccin-macchiato.json
 link ghostty/config .config/ghostty/config
 link git/ignore .config/git/ignore

@@ -22,7 +22,7 @@ Adapted from pstack's pause-safely and session-pickup playbooks (cursor/plugins 
    - **Decisions and dead ends:** choices made and why, and approaches already ruled out.
 5. End the note with this block, so the next instance follows pickup's rules:
 
-   > **For the instance picking this up:** this note is authoritative. Don't redo finished work or re-run a repro that already passed. Check `git log` and `git status` against the note, name the resume point, then verify inherited claims on the real artifact before building on them. Route the remaining work to the matching playbook (`~/.claude/skills/playbook/SKILL.md`).
+   > **For the instance picking this up:** this note is authoritative. Don't redo finished work or re-run a repro that already passed. Check `git log` and `git status` against the note, name the resume point, then verify inherited claims on the real artifact before building on them. Pick the remaining work up with the matching agent-skills workflow (`/plan` for open tasks, `/build` for planned ones).
 
 6. Save the note to `/tmp/<repo-name>-handoff.md` so another instance can read it by path.
 

@@ -16,8 +16,6 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 - "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
 - "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
-- **Playbooks:** for a bug fix, feature, refactor, prototype, or an investigation that needs exploring, read `~/.claude/skills/playbook/SKILL.md` and the matching playbook it points to before the first step, then list that playbook's steps at the top of the reply.
-
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
@@ -93,9 +91,7 @@ The test: every step should produce a diff that can be reviewed in under a minut
 
 **Explain by default. Coach only when asked.**
 
-- **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.
-- **Name the principle** behind any non-obvious call, from the `principles` skill, and the choice it changed.
-- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
+- **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
 - **Coaching** (`/learn`, `/learn-deep`, or the user asks to write it): load the `learn` skill and follow its method. While coaching:
   - The user writes the coached decision. This overrides §0's "Claude writes the code" for that piece; §5 step size still applies.
   - Don't delegate edits to subagents. They don't inherit this section, and one delegation silently writes the whole feature.

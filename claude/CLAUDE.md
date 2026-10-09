@@ -93,6 +93,7 @@ The test: every step should produce a diff that can be reviewed in under a minut
 **Explain by default. Coach only when asked.**
 
 - **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.
+- **Name the principle** behind any non-obvious call, from the `principles` skill, and the choice it changed.
 - **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
 - **Coaching** (`/learn`, `/learn-deep`, or the user asks to write it): load the `learn` skill and follow its method. While coaching:
   - The user writes the coached decision. This overrides §0's "Claude writes the code" for that piece; §5 step size still applies.

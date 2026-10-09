@@ -31,7 +31,7 @@ Before implementing:
 
 ## 2. Simplicity First
 
-**Solution size: the ponytail plugin's ladder governs it.** Its "every place your change must reach" list is the step map, worked through in §5-sized steps.
+**Solution size: the ponytail plugin's ladder governs it.** Its "every place your change must reach" list is the step map, worked through in §5-sized steps. pstack's principles, playbooks, and TypeScript rules decide process and proof, not size: their structure-adding rules (branded types, new unions, state machines) apply only where the loose version forces a cast, a `!`, or a "should never happen" throw.
 
 ## 3. Surgical Changes
 

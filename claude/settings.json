@@ -116,5 +116,6 @@
     }
   },
   "advisorModel": "opus",
-  "theme": "custom:catppuccin-macchiato"
+  "theme": "custom:catppuccin-macchiato",
+  "syncClaudeAiSkills": false
 }

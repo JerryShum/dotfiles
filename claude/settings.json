@@ -69,7 +69,8 @@
     "i-have-adhd@i-have-adhd": true,
     "impeccable@impeccable": true,
     "claude-mem@thedotmack": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "agent-skills@addy-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "i-have-adhd": {
@@ -95,6 +96,13 @@
         "source": "github",
         "repo": "DietrichGebert/ponytail",
         "ref": "v5.1.0"
+      }
+    },
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills",
+        "ref": "0.6.12"
       }
     }
   },

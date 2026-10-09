@@ -27,6 +27,9 @@ link gitconfig .gitconfig
 link claude/settings.json .claude/settings.json
 link claude/CLAUDE.md .claude/CLAUDE.md
 link claude/themes/catppuccin-macchiato.json .claude/themes/catppuccin-macchiato.json
+for skill in "$DOTFILES"/claude/skills/*/; do
+  link "claude/skills/$(basename "$skill")" ".claude/skills/$(basename "$skill")"
+done
 link ghostty/config .config/ghostty/config
 link git/ignore .config/git/ignore
 link gh/config.yml .config/gh/config.yml

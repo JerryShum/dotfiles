@@ -9,10 +9,12 @@ Personal config files, version-controlled so a new machine can be set up in one 
 | Shell | `zshrc`, `zprofile`, `profile`, `tcshrc` | zsh completion, autosuggestions, zoxide, syntax-highlighting; Homebrew and Cargo environment setup |
 | Git | `gitconfig`, `git/ignore` | Identity, SSH commit signing, `trunk` as default branch, `wt` alias, global gitignore |
 | GitHub CLI | `gh/config.yml` | `co: pr checkout` alias, protocol, prompts |
-| Claude Code | `claude/settings.json`, `claude/CLAUDE.md`, `claude/themes/catppuccin-macchiato.json` | Permissions, hooks, statusline, enabled plugins, model/effort settings, global instructions, custom theme |
+| Claude Code | `claude/settings.json`, `claude/CLAUDE.md`, `claude/skills/`, `claude/themes/catppuccin-macchiato.json` | Permissions, hooks, statusline, enabled plugins, model/effort settings, global instructions, skills, custom theme |
 | Ghostty | `ghostty/config` | Terminal theme (Solarized Osaka Night), font (Fira Code SemiBold), font size |
 | Herdr | `herdr/config.toml` | Workspace multiplexer preferences |
 | Zed | `zed/settings.json`, `zed/keymap.json`, `zed/tasks.json` | Formatters, agent models, theme, font, custom keybindings, Television-integrated file finder task |
+
+`claude/skills/` holds skills adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) at commit `ccb5507` (MIT, © 2026 Lauren Tan; see `claude/skills/PSTACK-LICENSE`).
 
 ## Install
 

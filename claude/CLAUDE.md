@@ -94,7 +94,8 @@ The test: every step should produce a diff that can be reviewed in under a minut
 
 **Explain by default.**
 
-- **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
+- **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.
+- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
 - Drop all of it when something is broken and blocking the user. Fix it, offer the walkthrough after.
 
 ## 7. Write For The Reader

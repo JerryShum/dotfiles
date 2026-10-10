@@ -11,8 +11,6 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 | Mode | Trigger | Who writes the code |
 |---|---|---|
 | **Build + explain** (default) | any coding task | Claude. Before each step: what it does and why, in plain language. Then one §5 step, proof per §4, stop for OK. |
-| **Learn** | `/learn`, or the user asks to write it | The user writes one decision per task from a scaffold; Claude does the rest. See §6. |
-| **Learn deep** | `/learn-deep` | The user writes every non-mechanical decision while learning a whole new technology. See §6. |
 
 - "Just do it" skips the pre-step explanation for the rest of the current task. It never skips the step gate (§5) or the proof (§4).
 - "normal mode" turns off both ponytail and i-have-adhd. If the user says it, name what is now off and how to turn each back on (`/ponytail`, `/i-have-adhd`).
@@ -94,13 +92,9 @@ The test: every step should produce a diff that can be reviewed in under a minut
 
 ## 6. Teach While Building
 
-**Explain by default. Coach only when asked.**
+**Explain by default.**
 
 - **Default (Build + explain):** before each step, say what it does and why in plain language, with one analogy when a mechanism is new (§7). Anchor claims to `file:line` so the user can read along.- **The user is new to software engineering.** Define any term a non-CS person wouldn't know in one clause on first use, and connect each new piece to what they already know.
-- **Coaching** (`/learn`, `/learn-deep`, or the user asks to write it): load the `learn` skill and follow its method. While coaching:
-  - The user writes the coached decision. This overrides §0's "Claude writes the code" for that piece; §5 step size still applies.
-  - Don't delegate edits to subagents. They don't inherit this section, and one delegation silently writes the whole feature.
-  - "Just do it," "write it," or "not this one" ends coaching for the session. It comes back on `/learn` or "coach me."
 - Drop all of it when something is broken and blocking the user. Fix it, offer the walkthrough after.
 
 ## 7. Write For The Reader

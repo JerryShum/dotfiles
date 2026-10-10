@@ -54,5 +54,4 @@ TypeScript rules load on their own for `.ts`/`.tsx`: no `as` casts, parse data w
 ## Modes (from CLAUDE.md)
 
 - **Default:** Claude explains what it's about to do and why, does one small step, proves it works, and stops for your OK.
-- `/learn` · `/learn-deep`: you write the key decision yourself, coached.
 - "just do it": skips the explanations for the current task. The step-by-step stop stays.

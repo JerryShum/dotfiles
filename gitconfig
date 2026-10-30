@@ -1,0 +1,11 @@
+# name, email and signingkey live in ~/.gitconfig.local (not tracked)
+[include]
+	path = ~/.gitconfig.local
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = trunk
+[alias]
+	wt = worktree

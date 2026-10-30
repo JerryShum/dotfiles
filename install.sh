@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Symlinks this repo's files into place in $HOME.
+# Safe to re-run: skips files already linked, backs up anything else to *.bak.
+set -euo pipefail
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+link() {
+  local src="$DOTFILES/$1" dest="$HOME/$2"
+  if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
+    return
+  fi
+  if [ -e "$dest" ]; then
+    mv "$dest" "$dest.bak"
+    echo "backed up $dest -> $dest.bak"
+  fi
+  mkdir -p "$(dirname "$dest")"
+  ln -s "$src" "$dest"
+  echo "linked $dest -> $src"
+}
+
+link zshrc .zshrc
+link zprofile .zprofile
+link profile .profile
+link tcshrc .tcshrc
+link gitconfig .gitconfig
+link claude/settings.json .claude/settings.json
+link claude/CLAUDE.md .claude/CLAUDE.md
+link claude/themes/catppuccin-macchiato.json .claude/themes/catppuccin-macchiato.json
+for skill in "$DOTFILES"/claude/skills/*/; do
+  link "claude/skills/$(basename "$skill")" ".claude/skills/$(basename "$skill")"
+done
+link ghostty/config .config/ghostty/config
+link git/ignore .config/git/ignore
+link gh/config.yml .config/gh/config.yml
+link herdr/config.toml .config/herdr/config.toml
+link zed/settings.json .config/zed/settings.json
+link zed/keymap.json .config/zed/keymap.json
+link zed/tasks.json .config/zed/tasks.json

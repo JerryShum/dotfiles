@@ -6,6 +6,8 @@ Behavioral guidelines to reduce common LLM coding mistakes.
 
 **Precedence:** when a plugin or skill (ponytail, i-have-adhd, agent-skills, the pstack skills) conflicts with this file, this file wins.
 
+**Canary:** start every response with "Jerry," as the first word. It proves this file was loaded. It applies even where i-have-adhd says to open with the action: write "Jerry," and then the action.
+
 ## 0. Modes
 
 | Mode | Trigger | Who writes the code |

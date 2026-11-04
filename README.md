@@ -14,7 +14,7 @@ Personal config files, version-controlled so a new machine can be set up in one 
 | Herdr | `herdr/config.toml` | Workspace multiplexer preferences |
 | Zed | `zed/settings.json`, `zed/keymap.json`, `zed/tasks.json` | Formatters, agent models, theme, font, custom keybindings, Television-integrated file finder task |
 
-`claude/skills/` holds skills adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) at commit `ccb5507` (MIT, © 2026 Lauren Tan; see `claude/skills/PSTACK-LICENSE`).
+`claude/skills/` holds skills adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) at commit `ccb5507` (MIT, © 2026 Lauren Tan; see `claude/skills/PSTACK-LICENSE`). `claude/skills/teach/` is copied unchanged from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/teach) at commit `ad5400b` (MIT, © 2026 Matt Pocock; see `claude/skills/MATTPOCOCK-SKILLS-LICENSE`).
 
 ## Install
 
